@@ -6,31 +6,73 @@
   <title>Bon Anniversaire MV</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
       text-align: center;
       font-family: "Georgia", serif;
       background: linear-gradient(135deg, #ffe6f0, #fff0b3);
-      margin: 0;
-      padding: 20px;
+      overflow: hidden;
     }
+
+    img {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
     p {
       font-size: 28px;
       line-height: 1.5;
       color: #4d0033;
       max-width: 600px;
+      margin: 0 20px;
+    }
+
+    /* Styles pour les confettis */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.7;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
     }
   </style>
 </head>
 <body>
-    <div>
-    <img src="logo.png" alt="Logo" style="widt
+
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo">
+
+  <!-- Poème -->
   <p>
     Joyeux anniversaire MV !<br>
     Que cette journée soit remplie de bonheur,<br>
     de rires et de moments inoubliables.
   </p>
+
+  <!-- Confettis générés par JS -->
+  <script>
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+    for(let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+      confetti.style.width = confetti.style.height = (5 + Math.random() * 10) + 'px';
+      document.body.appendChild(confetti);
+    }
+  </script>
 </body>
 </html>
