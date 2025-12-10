@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bon Anniversaire MV</title>
+
+  <!-- Icône pour l’écran d’accueil iPhone -->
+  <link rel="apple-touch-icon" href="icon.png">
+
   <style>
     body {
       margin: 0;
@@ -71,7 +75,7 @@
 </head>
 <body>
 
-  <!-- Logo -->
+  <!-- Logo en haut -->
   <img src="logo.png" alt="Logo">
 
   <!-- Poème -->
@@ -82,15 +86,18 @@
   </p>
 
   <!-- Cœurs animés -->
-<script>
-  const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
-  for(let i = 0; i < 50; i++) {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-    heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
-    document.body.appendChild(heart);
-  }
-</script>
+  <script>
+    const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
+    for(let i = 0; i < 50; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>
