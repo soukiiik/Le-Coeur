@@ -82,18 +82,15 @@
   </p>
 
   <!-- Cœurs animés -->
-  <script>
-    const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
-    for(let i = 0; i < 50; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
-      document.body.appendChild(heart);
-    }
-  </script>
-
-</body>
-</html>
+<script>
+  const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
+  for(let i = 0; i < 50; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+    heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+    document.body.appendChild(heart);
+  }
+</script>
