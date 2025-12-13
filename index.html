@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday mv</title>
-
+  <title>Bon anniversaire MV 💖</title>
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ffe6f0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
+  <meta name="apple-mobile-web-app-title" content="Bon Anniversaire MV">
+  <meta name="application-name" content="Bon Anniversaire MV">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -30,7 +30,6 @@
       overflow: hidden;
     }
 
-    /* Message d'introduction */
     #intro {
       font-size: 32px;
       font-weight: bold;
@@ -46,7 +45,6 @@
       100% { opacity: 1; }
     }
 
-    /* Logo */
     img {
       width: 150px;
       height: auto;
@@ -54,7 +52,6 @@
       display: none;
     }
 
-    /* Poème */
     #poeme {
       font-size: 28px;
       line-height: 1.5;
@@ -67,7 +64,6 @@
       display: none;
     }
 
-    /* Gros cœur cadeau */
     #coeurCadeau {
       width: 130px;
       height: 130px;
@@ -78,6 +74,7 @@
       position: relative;
       z-index: 10;
       display: none;
+      transition: width 0.3s, height 0.3s;
     }
 
     #coeurCadeau::before,
@@ -88,6 +85,7 @@
       height: 130px;
       background-color: red;
       border-radius: 50%;
+      transition: width 0.3s, height 0.3s;
     }
 
     #coeurCadeau::before {
@@ -106,7 +104,6 @@
       100% { transform: rotate(-45deg) scale(1); }
     }
 
-    /* Canvas explosion */
     #explosionCanvas {
       position: fixed;
       top: 0;
@@ -117,80 +114,19 @@
       display: none;
       z-index: 20;
     }
-
-    /* Cœurs animés */
-    .heart {
-      position: absolute;
-      background-color: red;
-      transform: rotate(-45deg);
-      animation: fall 3s linear infinite;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background-color: inherit;
-    }
-
-    .heart::before {
-      width: 100%;
-      height: 100%;
-      top: -50%;
-      left: 0;
-    }
-
-    .heart::after {
-      width: 100%;
-      height: 100%;
-      left: 50%;
-      top: 0;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-10px) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Message d'introduction -->
-  <div id="intro">Coucou toi ! Clique ici ! ❤️</div>
-
-  <!-- Cœur cadeau -->
+  <div id="intro"> To the girl I love most 🤍 </div>
   <div id="coeurCadeau"></div>
-
-  <!-- Canvas explosion -->
   <canvas id="explosionCanvas"></canvas>
-
-  <!-- Logo -->
   <img id="logo" src="logo.png" alt="Logo">
-
-  <!-- Poème -->
   <p id="poeme">
-    Un petit truc simple pour te souhaiter un bon anniversaire avec tout ce qui va avec.<br>
+    Bon Anniversaire la meuf la plus incroyable ! <br>
     Cette page s'actualisera, parfois, garde-la près de toi.
   </p>
 
-  <!-- Coeurs qui tombent -->
-  <script>
-    const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
-    for(let i = 0; i < 50; i++) {
-      const heart = document.createElement('div');
-      const size = 10 + Math.random() * 20;
-      heart.classList.add('heart');
-      heart.style.width = size + 'px';
-      heart.style.height = size + 'px';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-    }
-  </script>
-
-  <!-- Explosion + logique -->
   <script>
     const intro = document.getElementById("intro");
     const coeur = document.getElementById("coeurCadeau");
@@ -199,6 +135,9 @@
     const canvas = document.getElementById("explosionCanvas");
     const ctx = canvas.getContext("2d");
 
+    let clickCount = 0; // Compteur de clics
+    let coeurSize = 130;
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -206,36 +145,44 @@
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    /* 1) Clic sur "Coucou toi !" → affiche le cœur */
+    // 1) Clic sur le texte d’intro → afficher le cœur
     intro.addEventListener("click", () => {
       intro.style.display = "none";
       coeur.style.display = "block";
     });
 
-    /* 2) Clic sur cœur → explosion + poème */
+    // 2) Clic sur le cœur → grossit / explosion au 3e clic
     coeur.addEventListener("click", () => {
-      coeur.style.display = "none";
-
-      canvas.style.display = "block";
-      explosion();
-
-      setTimeout(() => {
-        canvas.style.display = "none";
-        logo.style.display = "block";
-        poeme.style.display = "block";
-
+      clickCount++;
+      if (clickCount < 3) {
+        coeurSize += 30; // grossit à chaque clic
+        coeur.style.width = coeurSize + "px";
+        coeur.style.height = coeurSize + "px";
+        coeur.style.transition = "width 0.3s, height 0.3s";
+        // Mettre à jour les pseudo-éléments ::before et ::after
+        coeur.style.setProperty("--coeurSize", coeurSize + "px");
+        coeur.querySelectorAll('::before, ::after');
+      } else {
+        // Explosion
+        coeur.style.display = "none";
+        canvas.style.display = "block";
+        explosion();
         setTimeout(() => {
-          poeme.style.opacity = 1;
-          poeme.style.transform = "scale(1)";
-        }, 50);
-      }, 1200);
+          canvas.style.display = "none";
+          logo.style.display = "block";
+          poeme.style.display = "block";
+          setTimeout(() => {
+            poeme.style.opacity = 1;
+            poeme.style.transform = "scale(1)";
+          }, 50);
+        }, 1200);
+      }
     });
 
-    /* Explosion */
+    // Explosion simple
     function explosion() {
       const particles = [];
       const particleCount = 150;
-
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: window.innerWidth / 2,
@@ -251,7 +198,6 @@
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let alive = false;
-
         particles.forEach(p => {
           if (p.life > 0) {
             alive = true;
@@ -259,17 +205,14 @@
             p.y += p.speedY;
             p.size *= 0.96;
             p.life--;
-
             ctx.fillStyle = p.color;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             ctx.fill();
           }
         });
-
         if (alive) requestAnimationFrame(animate);
       }
-
       animate();
     }
   </script>
