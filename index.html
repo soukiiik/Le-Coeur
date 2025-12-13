@@ -69,8 +69,8 @@
 
     /* Gros cœur cadeau */
     #coeurCadeau {
-      width: 60px; /* commence petit */
-      height: 60px;
+      width: 130px;
+      height: 130px;
       background-color: red;
       transform: rotate(-45deg);
       cursor: pointer;
@@ -78,27 +78,25 @@
       position: relative;
       z-index: 10;
       display: none;
-      transition: width 0.3s, height 0.3s;
     }
 
     #coeurCadeau::before,
     #coeurCadeau::after {
       content: "";
       position: absolute;
-      width: 60px;
-      height: 60px;
+      width: 130px;
+      height: 130px;
       background-color: red;
       border-radius: 50%;
-      transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
     }
 
     #coeurCadeau::before {
-      top: -30px;
+      top: -65px;
       left: 0;
     }
 
     #coeurCadeau::after {
-      left: 30px;
+      left: 65px;
       top: 0;
     }
 
@@ -107,64 +105,15 @@
       50% { transform: rotate(-45deg) scale(1.1); }
       100% { transform: rotate(-45deg) scale(1); }
     }
-
-    /* Canvas explosion */
-    #explosionCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      display: none;
-      z-index: 20;
-    }
-
-    /* Cœurs animés */
-    .heart {
-      position: absolute;
-      background-color: red;
-      transform: rotate(-45deg);
-      animation: fall 3s linear infinite;
-    }
-
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background-color: inherit;
-    }
-
-    .heart::before {
-      width: 100%;
-      height: 100%;
-      top: -50%;
-      left: 0;
-    }
-
-    .heart::after {
-      width: 100%;
-      height: 100%;
-      left: 50%;
-      top: 0;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-10px) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
   </style>
 </head>
 <body>
 
-  <div id="intro">Coucou toi ! Clique ici ! ❤️</div>
+  <div id="intro">To the girl I love the most 🤍</div>
   <div id="coeurCadeau"></div>
-  <canvas id="explosionCanvas"></canvas>
   <img id="logo" src="logo.png" alt="Logo">
   <p id="poeme">
-    Un petit truc simple pour te souhaiter un bon anniversaire avec tout ce qui va avec.<br>
-    Cette page s'actualisera, parfois, garde-la près de toi.
+    Bon anniversaire la fille incroyable que tu es. Gros coeur avec les doigts
   </p>
 
   <script>
@@ -172,104 +121,23 @@
     const coeur = document.getElementById("coeurCadeau");
     const poeme = document.getElementById("poeme");
     const logo = document.getElementById("logo");
-    const canvas = document.getElementById("explosionCanvas");
-    const ctx = canvas.getContext("2d");
 
-    let clickCount = 0; 
-    let coeurSize = 60; // commence petit
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    // Création des cœurs animés (sans confettis)
-    const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff4500', '#ff6347'];
-    for(let i = 0; i < 30; i++) {
-      const heart = document.createElement('div');
-      const size = 10 + Math.random() * 20;
-      heart.classList.add('heart');
-      heart.style.width = size + 'px';
-      heart.style.height = size + 'px';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-    }
-
-    // Clic sur intro → affiche le cœur
+    // Clic sur le message d’intro → afficher le cœur
     intro.addEventListener("click", () => {
       intro.style.display = "none";
       coeur.style.display = "block";
     });
 
-    // Clic sur cœur → grossit et explose au 3e clic
+    // Clic sur le cœur → afficher logo + poème
     coeur.addEventListener("click", () => {
-      clickCount++;
-      if (clickCount < 3) {
-        coeurSize += 30; // grossit à chaque clic
-        coeur.style.width = coeurSize + "px";
-        coeur.style.height = coeurSize + "px";
-        coeur.style.setProperty('--before-after-size', coeurSize + 'px');
-        coeur.querySelectorAll('::before, ::after'); // pour transition des pseudo-éléments
-        // Ajuste ::before et ::after dynamiquement
-        coeur.style.setProperty('--coeurOffset', (coeurSize / 2) + 'px');
-        coeur.style.setProperty('--coeurOffsetTop', (-coeurSize / 2) + 'px');
-      } else {
-        // Explosion
-        coeur.style.display = "none";
-        canvas.style.display = "block";
-        explosion();
-        setTimeout(() => {
-          canvas.style.display = "none";
-          logo.style.display = "block";
-          poeme.style.display = "block";
-          setTimeout(() => {
-            poeme.style.opacity = 1;
-            poeme.style.transform = "scale(1)";
-          }, 50);
-        }, 1200);
-      }
+      coeur.style.display = "none";
+      logo.style.display = "block";
+      poeme.style.display = "block";
+      setTimeout(() => {
+        poeme.style.opacity = 1;
+        poeme.style.transform = "scale(1)";
+      }, 50);
     });
-
-    function explosion() {
-      const particles = [];
-      const particleCount = 150;
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: window.innerWidth / 2,
-          y: window.innerHeight / 2,
-          size: Math.random() * 6 + 4,
-          color: `hsl(${Math.random() * 360}, 100%, 60%)`,
-          speedX: (Math.random() - 0.5) * 10,
-          speedY: (Math.random() - 0.5) * 10,
-          life: 100
-        });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let alive = false;
-        particles.forEach(p => {
-          if (p.life > 0) {
-            alive = true;
-            p.x += p.speedX;
-            p.y += p.speedY;
-            p.size *= 0.96;
-            p.life--;
-            ctx.fillStyle = p.color;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        });
-        if (alive) requestAnimationFrame(animate);
-      }
-      animate();
-    }
-
   </script>
 
   <script>
