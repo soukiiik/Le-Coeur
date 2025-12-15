@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide pour avoir un cœur ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: "Georgia", serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+      text-align: center;
+    }
+
+    h1 {
+      color: #b30059;
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .step {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 12px;
+      max-width: 600px;
+      font-size: 22px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .heart {
+      font-size: 40px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #4d0033;
+    }
+
+    a {
+      margin-top: 25px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      background: #ff4d88;
+      padding: 12px 24px;
+      border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Guide officiel pour avoir un cœur ❤️</h1>
+
+  <div class="step">1️⃣ Regarder la personne que tu aimes comme si c’était ton monde.</div>
+  <div class="step">2️⃣ Écouter vraiment (même quand tu comprends pas tout).</div>
+  <div class="step">3️⃣ Faire rire, même quand c’est nul.</div>
+  <div class="step">4️⃣ Être là, tout simplement.</div>
+  <div class="step">5️⃣ Ne jamais oublier que le cœur… c’est elle <span class="heart">🤍</span></div>
+
+  <div class="footer">
+    Verdict :<br>
+    <strong>Tu as un cœur. Elle l’a juste volé ❤️</strong>
+  </div>
+
+  <a href="index.html">⬅ Retour</a>
+
+</body>
+</html>
