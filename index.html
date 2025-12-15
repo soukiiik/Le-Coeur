@@ -3,81 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Bon anniversaire MV 💖</title>
+
+  <!-- Icône écran d’accueil iPhone -->
   <link rel="apple-touch-icon" href="icon.png">
+
+  <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ffe6f0">
+
+  <!-- Mode app iPhone -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Bon Anniversaire MV">
-  <meta name="application-name" content="Bon Anniversaire MV">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+
+  <!-- Anti-cache -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
   <style>
     body {
       margin: 0;
       padding: 0;
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
       text-align: center;
       font-family: "Georgia", serif;
       background: linear-gradient(135deg, #ffe6f0, #fff0b3);
       overflow: hidden;
     }
 
-    /* Message d'intro */
+    /* Texte d’intro */
     #intro {
       font-size: 32px;
       font-weight: bold;
       color: #b30059;
       cursor: pointer;
       animation: blink 1.5s infinite;
-      z-index: 15;
     }
 
     @keyframes blink {
       0% { opacity: 1; }
-      50% { opacity: 0.55; }
+      50% { opacity: 0.6; }
       100% { opacity: 1; }
     }
 
-    /* Logo */
-    img {
-      width: 150px;
-      height: auto;
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    /* Poème */
-    #poeme {
-      font-size: 28px;
-      line-height: 1.5;
-      color: #4d0033;
-      max-width: 600px;
-      margin: 0 20px;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.7s, transform 0.7s;
-      display: none;
-    }
-
-    /* Gros cœur cadeau */
+    /* Cœur cadeau */
     #coeurCadeau {
       width: 130px;
       height: 130px;
-      background-color: red;
+      background: red;
       transform: rotate(-45deg);
+      position: relative;
       cursor: pointer;
       animation: pulse 1.5s infinite;
-      position: relative;
-      z-index: 10;
       display: none;
+      margin: 20px 0;
     }
 
     #coeurCadeau::before,
@@ -86,7 +72,7 @@
       position: absolute;
       width: 130px;
       height: 130px;
-      background-color: red;
+      background: red;
       border-radius: 50%;
     }
 
@@ -105,48 +91,78 @@
       50% { transform: rotate(-45deg) scale(1.1); }
       100% { transform: rotate(-45deg) scale(1); }
     }
+
+    /* Logo */
+    #logo {
+      width: 150px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    /* Poème */
+    #poeme {
+      font-size: 28px;
+      color: #4d0033;
+      max-width: 600px;
+      margin: 0 20px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.7s, transform 0.7s;
+      display: none;
+    }
+
+    /* Bouton suite */
+    #suite {
+      margin-top: 25px;
+      display: none;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      background: #ff4d88;
+      padding: 12px 26px;
+      border-radius: 30px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Texte d’introduction -->
   <div id="intro">To the girl I love the most 🤍</div>
+
+  <!-- Cœur -->
   <div id="coeurCadeau"></div>
+
+  <!-- Logo -->
   <img id="logo" src="logo.png" alt="Logo">
+
+  <!-- Poème -->
   <p id="poeme">
     Bon anniversaire la fille incroyable que tu es. Gros coeur avec les doigts
   </p>
 
-<a href="coeur.html" style="
-  margin-top: 25px;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  background: #ff4d88;
-  padding: 12px 24px;
-  border-radius: 30px;
-">
-  Suite 👉
-</a>
+  <!-- Bouton suite -->
+  <a id="suite" href="coeur.html">Suite 👉</a>
 
-  
   <script>
     const intro = document.getElementById("intro");
     const coeur = document.getElementById("coeurCadeau");
     const poeme = document.getElementById("poeme");
     const logo = document.getElementById("logo");
+    const suite = document.getElementById("suite");
 
-    // Clic sur le message d’intro → afficher le cœur
+    // Afficher le cœur
     intro.addEventListener("click", () => {
       intro.style.display = "none";
       coeur.style.display = "block";
     });
 
-    // Clic sur le cœur → afficher logo + poème
+    // Afficher le message
     coeur.addEventListener("click", () => {
       coeur.style.display = "none";
       logo.style.display = "block";
       poeme.style.display = "block";
+      suite.style.display = "inline-block";
+
       setTimeout(() => {
         poeme.style.opacity = 1;
         poeme.style.transform = "scale(1)";
