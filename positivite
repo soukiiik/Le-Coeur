@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>31 jours pour toi 🤍</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      font-family: "Georgia", serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+      text-align: center;
+    }
+
+    h1 {
+      color: #b30059;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #4d0033;
+      margin-bottom: 25px;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+
+    .day {
+      background: white;
+      border-radius: 15px;
+      padding: 14px 0;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .day:hover {
+      transform: scale(1.05);
+    }
+
+    #phraseBox {
+      display: none;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      font-size: 22px;
+      color: #4d0033;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      background: #b30059;
+      padding: 12px 26px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>31 jours pour toi 🤍</h1>
+  <h2>Un jour. Une phrase. Rien de plus.</h2>
+
+  <div class="days">
+    <div class="day" onclick="showPhrase(0)">Jour 1</div>
+    <div class="day" onclick="showPhrase(1)">Jour 2</div>
+    <div class="day" onclick="showPhrase(2)">Jour 3</div>
+    <div class="day" onclick="showPhrase(3)">Jour 4</div>
+    <div class="day" onclick="showPhrase(4)">Jour 5</div>
+    <div class="day" onclick="showPhrase(5)">Jour 6</div>
+    <div class="day" onclick="showPhrase(6)">Jour 7</div>
+    <div class="day" onclick="showPhrase(7)">Jour 8</div>
+    <div class="day" onclick="showPhrase(8)">Jour 9</div>
+    <div class="day" onclick="showPhrase(9)">Jour 10</div>
+    <div class="day" onclick="showPhrase(10)">Jour 11</div>
+    <div class="day" onclick="showPhrase(11)">Jour 12</div>
+    <div class="day" onclick="showPhrase(12)">Jour 13</div>
+    <div class="day" onclick="showPhrase(13)">Jour 14</div>
+    <div class="day" onclick="showPhrase(14)">Jour 15</div>
+    <div class="day" onclick="showPhrase(15)">Jour 16</div>
+    <div class="day" onclick="showPhrase(16)">Jour 17</div>
+    <div class="day" onclick="showPhrase(17)">Jour 18</div>
+    <div class="day" onclick="showPhrase(18)">Jour 19</div>
+    <div class="day" onclick="showPhrase(19)">Jour 20</div>
+    <div class="day" onclick="showPhrase(20)">Jour 21</div>
+    <div class="day" onclick="showPhrase(21)">Jour 22</div>
+    <div class="day" onclick="showPhrase(22)">Jour 23</div>
+    <div class="day" onclick="showPhrase(23)">Jour 24</div>
+    <div class="day" onclick="showPhrase(24)">Jour 25</div>
+    <div class="day" onclick="showPhrase(25)">Jour 26</div>
+    <div class="day" onclick="showPhrase(26)">Jour 27</div>
+    <div class="day" onclick="showPhrase(27)">Jour 28</div>
+    <div class="day" onclick="showPhrase(28)">Jour 29</div>
+    <div class="day" onclick="showPhrase(29)">Jour 30</div>
+    <div class="day" onclick="showPhrase(30)">Jour 31</div>
+  </div>
+
+  <div id="phraseBox"></div>
+
+  <a href="index.html">⬅ Retour</a>
+
+  <script>
+    const phrases = [
+      "Tu es bien plus forte que tu ne le crois.",
+      "Tu as le droit de douter, jamais d’oublier ta valeur.",
+      "Tu n’as rien à prouver à personne.",
+      "Ta sensibilité est une force.",
+      "Tu mérites l’amour, même les jours sans.",
+      "Tu es exactement là où tu dois être.",
+      "Tu es capable de choses incroyables.",
+      "Tu es suffisante, telle que tu es.",
+      "Tu peux prendre ton temps.",
+      "Tu es belle, même quand tu ne le vois pas.",
+      "Tu avances, même quand tu doutes.",
+      "Tu as survécu à tout ce que tu pensais impossible.",
+      "Ta douceur est précieuse.",
+      "Tu mérites la paix intérieure.",
+      "Tu peux être fière de toi.",
+      "Tu n’es pas en retard.",
+      "Tu es profondément aimée.",
+      "Tu peux te faire confiance.",
+      "Tu n’as pas besoin d’être parfaite.",
+      "Chaque jour, tu grandis.",
+      "Tu as le droit de dire non.",
+      "Tu es importante.",
+      "Tu n’es pas trop.",
+      "Tu mérites le bonheur.",
+      "Ce que tu ressens est légitime.",
+      "Tu es courageuse.",
+      "Tu es un refuge.",
+      "Tu peux recommencer.",
+      "Tu es digne d’amour.",
+      "Tu es exactement assez.",
+      "Et je serai toujours là pour te le rappeler 🤍"
+    ];
+
+    function showPhrase(index) {
+      const box = document.getElementById("phraseBox");
+      box.innerText = phrases[index];
+      box.style.display = "block";
+      box.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
