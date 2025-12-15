@@ -3,173 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Le Coeur 💖</title>
-
-  <!-- Icône écran d’accueil iPhone -->
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffe6f0">
-
-  <!-- Mode app iPhone -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Bon Anniversaire MV">
-
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+  <title>To the girl I love 🤍</title>
 
   <style>
     body {
       margin: 0;
-      padding: 0;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      font-family: "Georgia", serif;
+      flex-direction: column;
+      font-family: Georgia, serif;
       background: linear-gradient(135deg, #ffe6f0, #fff0b3);
-      overflow: hidden;
+      text-align: center;
     }
 
-    /* Texte d’intro */
     #intro {
       font-size: 32px;
-      font-weight: bold;
       color: #b30059;
       cursor: pointer;
-      animation: blink 1.5s infinite;
     }
 
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
-
-    /* Cœur cadeau */
-    #coeurCadeau {
-      width: 130px;
-      height: 130px;
+    #coeur {
+      width: 120px;
+      height: 120px;
       background: red;
       transform: rotate(-45deg);
-      position: relative;
-      cursor: pointer;
-      animation: pulse 1.5s infinite;
+      margin: 20px;
       display: none;
-      margin: 20px 0;
+      cursor: pointer;
+      position: relative;
     }
 
-    #coeurCadeau::before,
-    #coeurCadeau::after {
+    #coeur::before,
+    #coeur::after {
       content: "";
       position: absolute;
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       background: red;
       border-radius: 50%;
     }
 
-    #coeurCadeau::before {
-      top: -65px;
+    #coeur::before {
+      top: -60px;
       left: 0;
     }
 
-    #coeurCadeau::after {
-      left: 65px;
+    #coeur::after {
+      left: 60px;
       top: 0;
     }
 
-    @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.1); }
-      100% { transform: rotate(-45deg) scale(1); }
-    }
-
-    /* Logo */
-    #logo {
-      width: 150px;
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    /* Poème */
     #poeme {
-      font-size: 28px;
+      display: none;
+      font-size: 24px;
       color: #4d0033;
       max-width: 600px;
-      margin: 0 20px;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.7s, transform 0.7s;
-      display: none;
     }
 
-    /* Bouton suite */
-    #suite {
-      margin-top: 25px;
-      display: none;
+    a {
+      margin-top: 20px;
       text-decoration: none;
-      font-size: 20px;
       color: white;
       background: #ff4d88;
-      padding: 12px 26px;
+      padding: 10px 22px;
       border-radius: 30px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Texte d’introduction -->
   <div id="intro">To the girl I love the most 🤍</div>
 
-  <!-- Cœur -->
-  <div id="coeurCadeau"></div>
+  <div id="coeur"></div>
 
-  <!-- Logo -->
-  <img id="logo" src="logo.png" alt="Logo">
-
-  <!-- Poème -->
   <p id="poeme">
-    Bon anniversaire la fille incroyable que tu es. Gros coeur avec les doigts
+    Bon anniversaire la fille incroyable que tu es. Gros cœur avec les doigts
   </p>
 
-  <!-- Bouton suite -->
-  <a id="suite" href="coeur.html">Suite 👉</a>
-
-  <a href="positivite.html" id="suite"
+  <a id="suite" href="coeur.html" style="display:none;">Suite 👉</a>
+  <a href="positivite.html" style="display:none;">🌸 31 jours pour toi</a>
 
   <script>
     const intro = document.getElementById("intro");
-    const coeur = document.getElementById("coeurCadeau");
+    const coeur = document.getElementById("coeur");
     const poeme = document.getElementById("poeme");
-    const logo = document.getElementById("logo");
     const suite = document.getElementById("suite");
+    const positivite = document.querySelector('a[href="positivite.html"]');
 
-    // Afficher le cœur
-    intro.addEventListener("click", () => {
+    intro.onclick = () => {
       intro.style.display = "none";
       coeur.style.display = "block";
-    });
+    };
 
-    // Afficher le message
-    coeur.addEventListener("click", () => {
+    coeur.onclick = () => {
       coeur.style.display = "none";
-      logo.style.display = "block";
       poeme.style.display = "block";
       suite.style.display = "inline-block";
-
-      setTimeout(() => {
-        poeme.style.opacity = 1;
-        poeme.style.transform = "scale(1)";
-      }, 50);
-    });
+      positivite.style.display = "inline-block";
+    };
+  </script>
 
 </body>
 </html>
