@@ -92,6 +92,8 @@
 </head>
 <body>
 
+  <body>
+
   <!-- INTRO -->
   <div id="intro">
     To the girl I love the most 🤍<br>
@@ -104,17 +106,7 @@
   <!-- VIDÉO -->
   <video id="video" controls>
     <source src="video.mp4" type="video/mp4">
-    Ton navigateur ne supporte pas la vidéo.
   </video>
-
-  <!-- LOGO -->
-  <img id="logo" src="logo.png" alt="Logo">
-
-  <!-- POÈME -->
-  <p id="poeme">
-    Bon anniversaire la fille incroyable que tu es.  
-    Gros cœur avec les doigts.
-  </p>
 
   <!-- BOUTONS -->
   <a id="suite" href="coeur.html">Suite 👉</a>
@@ -125,8 +117,6 @@
     const intro = document.getElementById("intro");
     const coeur = document.getElementById("coeur");
     const video = document.getElementById("video");
-    const logo = document.getElementById("logo");
-    const poeme = document.getElementById("poeme");
     const suite = document.getElementById("suite");
     const positivite = document.querySelector('a[href="positivite.html"]');
 
@@ -137,12 +127,14 @@
 
     coeur.onclick = () => {
       coeur.style.display = "none";
-      video.style.display = "block";
-      video.play();
-      logo.style.display = "block";
-      poeme.style.display = "block";
-      suite.style.display = "inline-block";
-      positivite.style.display = "inline-block";
+
+      if (video) {
+        video.style.display = "block";
+        video.play().catch(() => {});
+      }
+
+      if (suite) suite.style.display = "inline-block";
+      if (positivite) positivite.style.display = "inline-block";
     };
   </script>
 
