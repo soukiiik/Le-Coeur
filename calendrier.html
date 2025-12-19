@@ -87,8 +87,6 @@ a {
 <script>
 /* 🔢 DATE DE DÉPART : 21 DÉCEMBRE */
 let startDate = new Date(new Date().getFullYear(), 11, 21); // 11 = décembre
-
-/* Si on est AVANT le 21 décembre, on prend l’année précédente */
 const today = new Date();
 if (today < startDate) {
   startDate.setFullYear(startDate.getFullYear() - 1);
@@ -97,26 +95,45 @@ if (today < startDate) {
 const grid = document.getElementById("grid");
 const box = document.getElementById("citationBox");
 
-/* 💬 CITATIONS (exemples – tu peux en mettre 365) */
+/* 💬 CITATIONS pour 31 jours (exemple) */
 const citations = [
-  "Aujourd’hui, tu peux être fière de toi. Juste pour exister.",
+  "Aujourd’hui, tu peux être fière de toi.",
   "Tu n’as rien à prouver pour mériter l’amour.",
-  "Ta sensibilité est une force que peu comprennent.",
+  "Ta sensibilité est une force.",
   "Même les jours lents t’emmènent quelque part.",
   "Tu es plus solide que tes doutes.",
   "Tu as le droit de prendre ton temps.",
   "Ta valeur ne dépend de personne.",
   "Tu es exactement là où tu dois être.",
   "Ta douceur laisse une trace.",
-  "Tu mérites qu’on te choisisse, chaque jour."
+  "Tu mérites qu’on te choisisse, chaque jour.",
+  "Chaque petit pas compte.",
+  "Respire et avance.",
+  "Tu fais mieux que tu ne crois.",
+  "Le monde a besoin de ta lumière.",
+  "Tu es aimée, même dans tes silences.",
+  "Chaque jour t’enseigne quelque chose.",
+  "Ta patience est précieuse.",
+  "Tes sourires font du bien.",
+  "Tu as le droit de dire non.",
+  "Tu es créative et unique.",
+  "Lâcher prise est parfois un cadeau.",
+  "Tu as le droit de rêver grand.",
+  "Ton cœur sait guider tes pas.",
+  "Tu es plus forte que tu ne le crois.",
+  "Ta présence est un cadeau.",
+  "Tu mérites la douceur que tu offres.",
+  "Chaque erreur est une leçon.",
+  "Tu es capable de tout ce que tu imagines.",
+  "Reste fidèle à toi-même.",
+  "Chaque jour t’apporte de la magie.",
+  "Le bonheur est dans les petites choses."
 ];
 
-/* 🔁 Répéter les citations jusqu’à 365 jours */
-while (citations.length < 365) {
-  citations.push(...citations);
-}
+/* 🔢 Limiter à 31 jours */
+const joursMax = 31;
 
-for (let i = 0; i < 365; i++) {
+for (let i = 0; i < joursMax; i++) {
   const date = new Date(startDate);
   date.setDate(startDate.getDate() + i);
 
