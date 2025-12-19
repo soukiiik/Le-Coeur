@@ -80,22 +80,21 @@ a {
 
 <div class="grid" id="grid"></div>
 
+<!-- Trois petits points pour indiquer la suite -->
+<div style="margin-top:10px; font-size:24px; color:#b30059;">…</div>
+
 <div id="citationBox"></div>
 
 <a href="index.html">⬅ Retour</a>
 
 <script>
-/* 🔢 DATE DE DÉPART : 21 DÉCEMBRE */
-let startDate = new Date(new Date().getFullYear(), 11, 21); // 11 = décembre
+const startDate = new Date(new Date().getFullYear(), 11, 21); // 21 décembre
 const today = new Date();
-if (today < startDate) {
-  startDate.setFullYear(startDate.getFullYear() - 1);
-}
 
 const grid = document.getElementById("grid");
 const box = document.getElementById("citationBox");
 
-/* 💬 CITATIONS pour 31 jours (exemple) */
+/* 💬 Citations pour les 31 premiers jours */
 const citations = [
   "Aujourd’hui, tu peux être fière de toi.",
   "Tu n’as rien à prouver pour mériter l’amour.",
@@ -130,29 +129,29 @@ const citations = [
   "Le bonheur est dans les petites choses."
 ];
 
-/* 🔢 Limiter à 31 jours */
 const joursMax = 31;
 
 for (let i = 0; i < joursMax; i++) {
-  const date = new Date(startDate);
-  date.setDate(startDate.getDate() + i);
-
   const div = document.createElement("div");
   div.className = "day";
   div.textContent = i + 1;
 
   const key = "jour-" + i;
-  const unlocked = date.toDateString() === today.toDateString() || date < today;
   const read = localStorage.getItem(key);
+
+  /* 🔒 Seul le premier jour est débloqué au départ */
+  let unlocked = (i === 0);  
+
+  /* Si déjà lu, on affiche en rose */
+  if (read) {
+    div.classList.add("read");
+    unlocked = true;
+  }
 
   if (!unlocked) {
     div.classList.add("locked");
     div.textContent = "🔒";
-  } else if (read) {
-    div.classList.add("read");
-  }
-
-  if (unlocked) {
+  } else {
     div.onclick = () => {
       box.style.display = "block";
       box.textContent = citations[i];
