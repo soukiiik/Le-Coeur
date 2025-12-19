@@ -5,29 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Le Cœur</title>
-
-<!-- Nom affiché sur l’écran d’accueil iPhone -->
 <meta name="apple-mobile-web-app-title" content="Le Cœur">
 <meta name="application-name" content="Le Cœur">
-
-<!-- Partage réseaux sociaux -->
-<meta property="og:title" content="Le Cœur">
-<meta property="og:description" content="Un petit cadeau pour toi 🤍">
-<meta property="og:image" content="icon.png">
 
 <style>
 body {
   margin: 0;
-  height: 100vh;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   flex-direction: column;
-  font-family: Georgia, serif;
-  background: linear-gradient(135deg, #ffe6f0, #fff0b3);
   text-align: center;
-  padding: 16px;
-  box-sizing: border-box;
+  font-family: "Georgia", serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff0b3);
+  overflow: hidden;
 }
 
 #intro {
@@ -40,7 +33,7 @@ body {
 #coeur {
   width: 90px;
   height: 90px;
-  background: red;
+  background-color: red;
   transform: rotate(-45deg);
   margin: 16px;
   display: none;
@@ -55,7 +48,7 @@ body {
   position: absolute;
   width: 90px;
   height: 90px;
-  background: red;
+  background-color: red;
   border-radius: 50%;
 }
 
@@ -63,20 +56,66 @@ body {
 #coeur::after { left: 45px; top: 0; }
 
 @keyframes pulse {
-  0% { transform: rotate(-45deg) scale(1); }
+  0%,100% { transform: rotate(-45deg) scale(1); }
   50% { transform: rotate(-45deg) scale(1.08); }
-  100% { transform: rotate(-45deg) scale(1); }
 }
 
 video {
   display: none;
-  width: 100%;
+  width: 90%;
   max-width: 360px;
   max-height: 40vh;
   border-radius: 15px;
-  margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 a {
   display: none;
   text-decoration: none;
+  color: white;
+  background: #ff4d88;
+  padding: 10px 22px;
+  border-radius: 30px;
+  margin-top: 12px;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+  To the girl I love the most 🤍<br>
+  <small>Clique ici</small>
+</div>
+
+<div id="coeur"></div>
+
+<video id="video" controls playsinline>
+  <source src="video.mp4" type="video/mp4">
+  Ton navigateur ne supporte pas la vidéo.
+</video>
+
+<a id="positivite" href="calendrier.html">📅 Un cœur par jour</a>
+
+<script>
+const intro = document.getElementById("intro");
+const coeur = document.getElementById("coeur");
+const video = document.getElementById("video");
+const positivite = document.getElementById("positivite");
+
+intro.onclick = () => {
+  intro.style.display = "none";
+  coeur.style.display = "block";
+};
+
+coeur.onclick = () => {
+  coeur.style.display = "none";
+  video.style.display = "block";   // la vidéo s'affiche
+  // ATTENTION : plus de autoplay
+  positivite.style.display = "inline-block";
+};
+</script>
+
+</body>
+</html>
