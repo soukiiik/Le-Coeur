@@ -43,6 +43,11 @@ h1 {
   cursor: not-allowed;
 }
 
+.read {
+  background: #ff9acb;
+  color: white;
+}
+
 #citationBox {
   margin-top: 25px;
   padding: 20px;
@@ -72,32 +77,46 @@ h1 {
 
 <h1>🤍 Un jour, une pensée 🤍</h1>
 
-<!-- JOURS -->
-<div class="grid">
-  <!-- Jour 1 -->
-  <div class="day" id="day1">1</div>
+<div class="grid" id="grid"></div>
 
-  <!-- Jour 2 verrouillé -->
-  <div class="day locked">🔒</div>
-</div>
+<div id="citationBox"></div>
 
-<!-- CITATION -->
-<div id="citationBox">
-  tu es la plus incroyable
-</div>
-
-<!-- TEXTE BAS -->
-<div id="tomorrow">
-  demain une nouvelle citation
-</div>
+<div id="tomorrow">demain une nouvelle citation</div>
 
 <script>
-const day1 = document.getElementById("day1");
-const box = document.getElementById("citationBox");
+// Définir les jours et citations
+const jours = [
+  { day: 1, citation: "tu es la plus incroyable", date: "2025-12-21" },
+  { day: 2, citation: "tu es toujours la plus incroyable", date: "2025-12-22" }
+  // on peut ajouter d'autres jours plus tard
+];
 
-day1.onclick = () => {
-  box.style.display = "block";
-};
+const grid = document.getElementById("grid");
+const box = document.getElementById("citationBox");
+const today = new Date();
+
+// Créer les cases du calendrier
+jours.forEach(j => {
+  const div = document.createElement("div");
+  div.classList.add("day");
+  div.textContent = j.day;
+
+  const jourDate = new Date(j.date + "T00:00:00");
+
+  // Vérifier si le jour est passé ou aujourd'hui
+  if (today >= jourDate) {
+    div.onclick = () => {
+      box.style.display = "block";
+      box.textContent = j.citation;
+      div.classList.add("read");
+    };
+  } else {
+    div.textContent = "🔒";
+    div.classList.add("locked");
+  }
+
+  grid.appendChild(div);
+});
 </script>
 
 </body>
