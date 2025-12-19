@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un cœur par jour 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #fff0f6, #fffbe6);
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #b30059;
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.day {
+  padding: 14px 0;
+  border-radius: 12px;
+  background: #ffd6e8;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.locked {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.read {
+  background: #ff9acb;
+  color: white;
+}
+
+#citationBox {
+  margin-top: 25px;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  font-size: 18px;
+  color: #4d0033;
+  display: none;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+a {
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: none;
+  color: white;
+  background: #ff4d88;
+  padding: 10px 22px;
+  border-radius: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🤍 Un jour, une pensée 🤍</h1>
+<p>Chaque jour t’apporte ce que tu mérites.</p>
+
+<div class="grid" id="grid"></div>
+
+<div id="citationBox"></div>
+
+<a href="index.html">⬅ Retour</a>
+
+<script>
+const startDate = new Date(new Date().getFullYear(), 11, 25);
+if (new Date() < startDate) startDate.setFullYear(startDate.getFullYear() - 1);
+
+const today = new Date();
+const grid = document.getElementById("grid");
+const box = document.getElementById("citationBox");
+
+const citations = [
+  "Aujourd’hui n’est pas un commencement. C’est un rappel : tu es déjà assez.",
+  "Tu n’as pas besoin de tout comprendre pour avancer.",
+  "Même quand tu doutes, tu restes profondément précieuse.",
+  "La douceur n’est pas une faiblesse. C’est une force.",
+  "Tu n’es pas en retard sur ta vie.",
+  "Respire. Tu fais déjà de ton mieux.",
+  "Ce que tu laisses derrière toi ne définit pas ce qui arrive.",
+  "Tu n’as rien à prouver aujourd’hui.",
+  "Ta présence est déjà une victoire.",
+  "Tu mérites la gentillesse que tu offres.",
+  // 👉 tu peux en ajouter autant que tu veux (jusqu’à 365)
+];
+
+// Répète les citations si moins de 365
+while (citations.length < 365) {
+  citations.push(...citations);
+}
+
+for (let i = 0; i < 365; i++) {
+  const date = new Date(startDate);
+  date.setDate(startDate.getDate() + i);
+
+  const div = document.createElement("div");
+  div.className = "day";
+  div.textContent = i + 1;
+
+  const key = "day-" + i;
+  const unlocked = date <= today;
+  const read = localStorage.getItem(key);
+
+  if (!unlocked) {
+    div.classList.add("locked");
+    div.textContent = "🔒";
+  } else if (read) {
+    div.classList.add("read");
+  }
+
+  if (unlocked) {
+    div.onclick = () => {
+      box.style.display = "block";
+      box.textContent = citations[i];
+      localStorage.setItem(key, true);
+      div.classList.add("read");
+    };
+  }
+
+  grid.appendChild(div);
+}
+</script>
+
+</body>
+</html>
