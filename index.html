@@ -1,133 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>To the girl I love 🤍</title>
+<title>To the girl I love 🤍</title>
 
-  <!-- Nom affiché sur l’écran d’accueil iPhone -->
-  <meta name="apple-mobile-web-app-title" content="Le Coeur">
-  <meta name="application-name" content="Le Coeur">
+<!-- Nom affiché sur l’écran d’accueil iPhone -->
+<meta name="apple-mobile-web-app-title" content="Le Coeur">
+<meta name="application-name" content="Le Coeur">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      font-family: Georgia, serif;
-      background: linear-gradient(135deg, #ffe6f0, #fff0b3);
-      text-align: center;
-      padding: 16px;
-      box-sizing: border-box;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #ffe6f0, #fff0b3);
+  text-align: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
 
-    #intro {
-      font-size: 30px;
-      color: #b30059;
-      cursor: pointer;
-      margin-bottom: 16px;
-    }
+#intro {
+  font-size: 30px;
+  color: #b30059;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
 
-    #coeur {
-      width: 90px;
-      height: 90px;
-      background: red;
-      transform: rotate(-45deg);
-      margin: 16px;
-      display: none;
-      cursor: pointer;
-      position: relative;
-      animation: pulse 1.3s infinite;
-    }
+#coeur {
+  width: 90px;
+  height: 90px;
+  background: red;
+  transform: rotate(-45deg);
+  margin: 16px;
+  display: none;
+  cursor: pointer;
+  position: relative;
+  animation: pulse 1.3s infinite;
+}
 
-    #coeur::before,
-    #coeur::after {
-      content: "";
-      position: absolute;
-      width: 90px;
-      height: 90px;
-      background: red;
-      border-radius: 50%;
-    }
+#coeur::before,
+#coeur::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background: red;
+  border-radius: 50%;
+}
 
-    #coeur::before { top: -45px; left: 0; }
-    #coeur::after { left: 45px; top: 0; }
+#coeur::before { top: -45px; left: 0; }
+#coeur::after { left: 45px; top: 0; }
 
-    @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.08); }
-      100% { transform: rotate(-45deg) scale(1); }
-    }
+@keyframes pulse {
+  0% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.08); }
+  100% { transform: rotate(-45deg) scale(1); }
+}
 
-    video {
-      display: none;
-      width: 100%;
-      max-width: 360px;
-      max-height: 40vh;
-      border-radius: 15px;
-      margin-bottom: 12px;
-    }
+video {
+  display: none;
+  width: 100%;
+  max-width: 360px;
+  max-height: 40vh;
+  border-radius: 15px;
+  margin-bottom: 12px;
+}
 
-    a {
-      display: none;
-      text-decoration: none;
-      color: white;
-      background: #ff4d88;
-      padding: 10px 22px;
-      border-radius: 30px;
-      margin: 6px 0;
-      font-size: 16px;
-    }
-  </style>
+a {
+  display: none;
+  text-decoration: none;
+  color: white;
+  background: #ff4d88;
+  padding: 10px 22px;
+  border-radius: 30px;
+  margin: 6px 0;
+  font-size: 16px;
+}
+</style>
 </head>
 <body>
 
-  <!-- INTRO -->
-  <div id="intro">
-    To the girl I love the most 🤍<br>
-    <small>Clique ici</small>
-  </div>
+<!-- INTRO -->
+<div id="intro">
+  To the girl I love the most 🤍<br>
+  <small>Clique ici</small>
+</div>
 
-  <!-- CŒUR -->
-  <div id="coeur"></div>
+<!-- CŒUR -->
+<div id="coeur"></div>
 
-  <!-- VIDÉO -->
-  <video id="video" controls playsinline>
-    <source src="video.mp4" type="video/mp4">
-    Ton navigateur ne supporte pas la vidéo.
-  </video>
+<!-- VIDÉO -->
+<video id="video" controls playsinline>
+  <source src="video.mp4" type="video/mp4">
+  Ton navigateur ne supporte pas la vidéo.
+</video>
 
-  <!-- BOUTONS -->
-  <a id="suite" href="coeur.html">Suite 👉</a>
-  <a id="positivite" href="calendrier.html">📅 Un cœur par jour</a>
+<!-- BOUTON CALENDRIER -->
+<a id="positivite" href="calendrier.html">📅 Un cœur par jour</a>
 
-  <!-- SCRIPT -->
-  <script>
-    const intro = document.getElementById("intro");
-    const coeur = document.getElementById("coeur");
-    const video = document.getElementById("video");
-    const suite = document.getElementById("suite");
-    const positivite = document.getElementById("positivite");
+<script>
+const intro = document.getElementById("intro");
+const coeur = document.getElementById("coeur");
+const video = document.getElementById("video");
+const positivite = document.getElementById("positivite");
 
-    intro.onclick = () => {
-      intro.style.display = "none";
-      coeur.style.display = "block";
-    };
+intro.onclick = () => {
+  intro.style.display = "none";
+  coeur.style.display = "block";
+};
 
-    coeur.onclick = () => {
-      coeur.style.display = "none";
+coeur.onclick = () => {
+  coeur.style.display = "none";
 
-      video.style.display = "block";
-      video.play().catch(() => {});
+  video.style.display = "block";
+  video.play().catch(() => {});
 
-      suite.style.display = "inline-block";
-      positivite.style.display = "inline-block";
-    };
-  </script>
+  positivite.style.display = "inline-block";
+};
+</script>
 
 </body>
 </html>
