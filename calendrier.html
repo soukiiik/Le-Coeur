@@ -105,7 +105,7 @@ const box = document.getElementById("citationBox");
 
 /* Citations pour 31 jours */
 const citations = [
-  "T'es comme la superlune tu fais troo la désirée.",
+  "Tu es comme la SuperLune tu fais trop la désirée",
   "Tu n’as rien à prouver pour mériter l’amour.",
   "Ta sensibilité est une force.",
   "Même les jours lents t’emmènent quelque part.",
@@ -137,41 +137,3 @@ const citations = [
   "Chaque jour t’apporte de la magie.",
   "Le bonheur est dans les petites choses."
 ];
-
-const joursMax = 31;
-
-for (let i = 0; i < joursMax; i++) {
-  const div = document.createElement("div");
-  div.className = "day";
-  div.textContent = i + 1;
-
-  const key = "jour-" + i;
-  const read = localStorage.getItem(key);
-
-  // Seul le premier jour est débloqué au départ
-  let unlocked = (i === 0);
-
-  // Si déjà lu, reste cliquable et rose
-  if (read) {
-    div.classList.add("read");
-    unlocked = true;
-  }
-
-  if (!unlocked) {
-    div.classList.add("locked");
-    div.textContent = "🔒";
-  } else {
-    div.onclick = () => {
-      box.style.display = "block";
-      box.textContent = citations[i];
-      localStorage.setItem(key, "lu");
-      div.classList.add("read");
-    };
-  }
-
-  grid.appendChild(div);
-}
-</script>
-
-</body>
-</html>
