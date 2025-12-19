@@ -76,7 +76,7 @@ a {
 <body>
 
 <h1>🤍 Un jour, une pensée 🤍</h1>
-<p>Chaque jour t’apporte ce que tu mérites.</p>
+<p>Chaque jour, un petit pas pour ton cœur.</p>
 
 <div class="grid" id="grid"></div>
 
@@ -85,28 +85,33 @@ a {
 <a href="index.html">⬅ Retour</a>
 
 <script>
-const startDate = new Date(new Date().getFullYear(), 11, 25);
-if (new Date() < startDate) startDate.setFullYear(startDate.getFullYear() - 1);
+/* 🔢 DATE DE DÉPART : 21 DÉCEMBRE */
+let startDate = new Date(new Date().getFullYear(), 11, 21); // 11 = décembre
 
+/* Si on est AVANT le 21 décembre, on prend l’année précédente */
 const today = new Date();
+if (today < startDate) {
+  startDate.setFullYear(startDate.getFullYear() - 1);
+}
+
 const grid = document.getElementById("grid");
 const box = document.getElementById("citationBox");
 
+/* 💬 CITATIONS (exemples – tu peux en mettre 365) */
 const citations = [
-  "Aujourd’hui n’est pas un commencement. C’est un rappel : tu es déjà assez.",
-  "Tu n’as pas besoin de tout comprendre pour avancer.",
-  "Même quand tu doutes, tu restes profondément précieuse.",
-  "La douceur n’est pas une faiblesse. C’est une force.",
-  "Tu n’es pas en retard sur ta vie.",
-  "Respire. Tu fais déjà de ton mieux.",
-  "Ce que tu laisses derrière toi ne définit pas ce qui arrive.",
-  "Tu n’as rien à prouver aujourd’hui.",
-  "Ta présence est déjà une victoire.",
-  "Tu mérites la gentillesse que tu offres.",
-  // 👉 tu peux en ajouter autant que tu veux (jusqu’à 365)
+  "Aujourd’hui, tu peux être fière de toi. Juste pour exister.",
+  "Tu n’as rien à prouver pour mériter l’amour.",
+  "Ta sensibilité est une force que peu comprennent.",
+  "Même les jours lents t’emmènent quelque part.",
+  "Tu es plus solide que tes doutes.",
+  "Tu as le droit de prendre ton temps.",
+  "Ta valeur ne dépend de personne.",
+  "Tu es exactement là où tu dois être.",
+  "Ta douceur laisse une trace.",
+  "Tu mérites qu’on te choisisse, chaque jour."
 ];
 
-// Répète les citations si moins de 365
+/* 🔁 Répéter les citations jusqu’à 365 jours */
 while (citations.length < 365) {
   citations.push(...citations);
 }
@@ -119,8 +124,8 @@ for (let i = 0; i < 365; i++) {
   div.className = "day";
   div.textContent = i + 1;
 
-  const key = "day-" + i;
-  const unlocked = date <= today;
+  const key = "jour-" + i;
+  const unlocked = date.toDateString() === today.toDateString() || date < today;
   const read = localStorage.getItem(key);
 
   if (!unlocked) {
@@ -134,7 +139,7 @@ for (let i = 0; i < 365; i++) {
     div.onclick = () => {
       box.style.display = "block";
       box.textContent = citations[i];
-      localStorage.setItem(key, true);
+      localStorage.setItem(key, "lu");
       div.classList.add("read");
     };
   }
