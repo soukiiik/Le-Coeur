@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Cœur</title>
+
 <style>
 html, body {
   margin: 0;
@@ -15,23 +16,31 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Texte intro */
 #intro {
   font-size: 30px;
   color: #b30059;
   cursor: pointer;
-  margin: 20px;
+  margin-bottom: 30px;
 }
 
+/* Wrapper du cœur */
 #coeurWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 30px 0;
 }
 
+/* Cœur */
 #coeur {
   width: 90px;
   height: 90px;
@@ -54,69 +63,69 @@ html, body {
   border-radius: 50%;
 }
 
-#coeur::before { top: -45px; left: 0; }
-#coeur::after { left: 45px; top: 0; }
+#coeur::before {
+  top: -45px;
+  left: 0;
+}
+
+#coeur::after {
+  left: 45px;
+  top: 0;
+}
 
 @keyframes pulse {
-  0%,100% { transform: rotate(-45deg) scale(1); }
+  0%, 100% { transform: rotate(-45deg) scale(1); }
   50% { transform: rotate(-45deg) scale(1.08); }
 }
 
+/* Vidéo */
 video {
   display: none;
   width: 90%;
   max-width: 360px;
   max-height: 40vh;
   border-radius: 15px;
-  margin-top: 12px;
-}
-
-a#btnCalendrier {
-  display: none;
-  text-decoration: none;
-  color: white;
-  background: #ff4d88;
-  padding: 10px 22px;
-  border-radius: 30px;
-  margin-top: 12px;
-  font-size: 16px;
+  margin-top: 20px;
 }
 </style>
 </head>
+
 <body>
+<div id="container">
 
-<div id="intro">
-  To the girl I love the most 🤍<br>
-  <small>Clique ici</small>
+  <!-- Texte d'intro -->
+  <div id="intro">
+    To the girl I love the most 🤍<br>
+    <small>Clique ici</small>
+  </div>
+
+  <!-- Cœur -->
+  <div id="coeurWrapper">
+    <div id="coeur"></div>
+  </div>
+
+  <!-- Vidéo -->
+  <video id="video" controls playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Ton navigateur ne supporte pas la vidéo.
+  </video>
+
 </div>
-
-<div id="coeurWrapper">
-  <div id="coeur"></div>
-</div>
-
-<video id="video" controls playsinline>
-  <source src="video.mp4" type="video/mp4">
-  Ton navigateur ne supporte pas la vidéo.
-</video>
-
-<a id="btnCalendrier" href="calendrier.html">📅 Un cœur par jour</a>
 
 <script>
 const intro = document.getElementById("intro");
 const coeur = document.getElementById("coeur");
 const video = document.getElementById("video");
-const btnCalendrier = document.getElementById("btnCalendrier");
 
-intro.onclick = () => {
+intro.addEventListener("click", () => {
   intro.style.display = "none";
   coeur.style.display = "block";
-};
+});
 
-coeur.onclick = () => {
+coeur.addEventListener("click", () => {
   coeur.style.display = "none";
   video.style.display = "block"; // pas d'autoplay
-  btnCalendrier.style.display = "inline-block";
-};
+});
 </script>
 
 </body>
